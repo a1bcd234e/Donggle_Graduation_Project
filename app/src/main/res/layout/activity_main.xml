@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:textSize="30dp"
+        android:text="MAIN"
+        android:gravity="center" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:gravity="bottom"
+        android:orientation="horizontal" >
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1" >
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentRight="true"
+                android:id="@+id/tabB"
+                android:text="TAB"
+                android:textSize="20dp"
+                android:backgroundTint="@color/black"/>
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_above="@+id/tabB"
+                android:layout_alignRight="@+id/tabB"
+                android:visibility="gone"
+                android:id="@+id/oFood"
+                android:text="oFood"
+                android:textSize="20dp"
+                android:textColor="@color/black"
+                android:backgroundTint="#fff000"/>
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_above="@+id/oFood"
+                android:layout_alignRight="@+id/tabB"
+                android:visibility="gone"
+                android:id="@+id/oTime"
+                android:text="oTime"
+                android:textSize="20dp"
+                android:textColor="@color/black"
+                android:backgroundTint="#fff000"/>
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_above="@+id/oTime"
+                android:layout_alignRight="@+id/tabB"
+                android:visibility="gone"
+                android:id="@+id/oNotice"
+                android:text="oNotice"
+                android:textSize="20dp"
+                android:textColor="@color/black"
+                android:backgroundTint="#fff000"/>
+        </RelativeLayout>
+
+    </LinearLayout>
+</LinearLayout>
