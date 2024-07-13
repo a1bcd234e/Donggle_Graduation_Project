@@ -27,17 +27,7 @@
             android:exported="false" />
         <activity android:name=".PWActivity"
             android:exported="false" />
-        <activity android:name=".SignUpActivity"
-            android:exported="false" />
-        <activity android:name=".UserInfoActivity"
-            android:exported="false" />
 
-        <activity android:name=".O_NoticeBoard"
-            android:exported="false" />
-        <activity android:name=".O_FoodTable"
-            android:exported="false" />
-        <activity android:name=".O_TimeTable"
-            android:exported="false" />
     </application>
 
 </manifest>
