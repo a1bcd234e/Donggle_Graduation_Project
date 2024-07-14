@@ -27,6 +27,10 @@
             android:exported="false" />
         <activity android:name=".PWActivity"
             android:exported="false" />
+        <activity android:name=".SignUpActivity"
+            android:exported="false" />
+        <activity android:name=".UserInfoActivity"
+            android:exported="false" />
 
     </application>
 
