@@ -50,6 +50,7 @@ public class MenuButtonActivity extends AppCompatActivity {
             }
         });
     }
+
     private void toggleButtonVisibility() {
         toggleVisibility(oFood);
         toggleVisibility(oTime);
