@@ -12,7 +12,6 @@ public class LoginActivity extends AppCompatActivity {
 
     EditText id, pw;
     Button loginB, fpwB;
-    Button tabB, menu1, menu2, menu3;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
