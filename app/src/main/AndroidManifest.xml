@@ -26,7 +26,7 @@
         <activity android:name=".MenuButtonActivity"
             android:exported="false" />
         <activity android:name=".PWActivity"
-            android:exported="false" />
+            android:exported="true" />
         <activity android:name=".SignUpActivity"
             android:exported="false" />
         <activity android:name=".UserInfoActivity"
