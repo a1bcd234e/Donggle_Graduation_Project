@@ -28,7 +28,7 @@
         <activity android:name=".PWActivity"
             android:exported="false" />
         <activity android:name=".SignUpActivity"
-            android:exported="false" />
+            android:exported="true" />
         <activity android:name=".UserInfoActivity"
             android:exported="false" />
 
