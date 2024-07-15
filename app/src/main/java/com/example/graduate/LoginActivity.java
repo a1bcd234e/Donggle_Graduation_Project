@@ -11,7 +11,7 @@ import androidx.appcompat.app.AppCompatActivity;
 public class LoginActivity extends AppCompatActivity {
 
     EditText id, pw;
-    Button loginB, fpwB;
+    Button loginB, fpwB, signUpB;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,6 +22,7 @@ public class LoginActivity extends AppCompatActivity {
         pw = (EditText) findViewById(R.id.pw);
         loginB = (Button) findViewById(R.id.loginB);
         fpwB = (Button) findViewById(R.id.fpwB);
+        signUpB = (Button) findViewById(R.id.signUpB);
 
         loginB.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -34,7 +35,18 @@ public class LoginActivity extends AppCompatActivity {
         fpwB.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                setContentView(R.layout.activity_fpw);
+                Intent intent = new Intent(getApplicationContext(), PWActivity.class);
+
+                startActivity(intent);
+            }
+        });
+
+        signUpB.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), SignUpActivity.class);
+
+                startActivity(intent);
             }
         });
     }
