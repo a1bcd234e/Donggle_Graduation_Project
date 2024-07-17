@@ -1,15 +1,13 @@
 package com.example.graduate;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.PersistableBundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
-
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
 
 public class SignUpActivity extends AppCompatActivity {
 
@@ -18,7 +16,7 @@ public class SignUpActivity extends AppCompatActivity {
 
     int checkNum = (int) (Math.random() * 10000);
     @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup);
 
@@ -45,15 +43,28 @@ public class SignUpActivity extends AppCompatActivity {
             }
         });
 
-        // edtNum을 int형으로 변환 후 userNum에 저장함
-        int userNum = Integer.parseInt(edtNum.getText().toString());
+        int userNum;
 
-        if(userNum == checkNum) {
-            signUpPw.setFocusableInTouchMode(true);
-            signUpPw.setFocusable(true);
-        }
-        else {
-            Toast.makeText(getApplicationContext(), "인증번호가 올바르지 않습니다.",
+        // edtNum을 int형으로 변환 후 userNum에 저장함
+        if (edtNum.getText().toString() != "") {
+            try {
+                userNum = Integer.parseInt(edtNum.getText().toString());
+
+                if(userNum == checkNum) {
+                    signUpPw.setFocusableInTouchMode(true);
+                    signUpPw.setFocusable(true);
+                }
+                else {
+                    Toast.makeText(getApplicationContext(), "인증번호가 올바르지 않습니다.",
+                            Toast.LENGTH_SHORT).show();
+                }
+            } catch (NumberFormatException e) {
+                // 변환 실패 처리
+                e.printStackTrace();
+            }
+        } else {
+            // stringValue가 비어있는 경우 기본값 설정 등의 처리
+            Toast.makeText(getApplicationContext(), "이메일 형식이 올바르지 않습니다.",
                     Toast.LENGTH_SHORT).show();
         }
 
