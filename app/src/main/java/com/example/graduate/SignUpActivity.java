@@ -11,7 +11,10 @@ import android.widget.Toast;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.firebase.auth.FirebaseAuth;
+
 public class SignUpActivity extends AppCompatActivity {
+    FirebaseAuth auth = FirebaseAuth.getInstance();
 
     EditText edtEmail, edtNum, signUpPw, signUpPwC;
     Button sendB, numCheckB, signUpCB;
@@ -56,7 +59,6 @@ public class SignUpActivity extends AppCompatActivity {
             Toast.makeText(getApplicationContext(), "인증번호가 올바르지 않습니다.",
                     Toast.LENGTH_SHORT).show();
         }
-
         if(signUpPw.getText().toString() == signUpPwC.getText().toString()) {
             // 비밀번호가 둘이 같다면 '확인'버튼 누를 시, '내 정보' 화면으로 넘어가게 함
             signUpCB.setOnClickListener(new View.OnClickListener() {
