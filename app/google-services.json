@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "450240123858",
+    "firebase_url": "https://donggle-a9ea1-default-rtdb.firebaseio.com",
+    "project_id": "donggle-a9ea1",
+    "storage_bucket": "donggle-a9ea1.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:450240123858:android:489c4c89abcc2408e86e0b",
+        "android_client_info": {
+          "package_name": "com.example.graduate"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD-1siS5zvnd3_fFqH93jEFaOAEOUgoyGI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

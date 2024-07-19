@@ -10,6 +10,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 public class SignUpActivity extends AppCompatActivity {
+    FirebaseAuth auth = FirebaseAuth.getInstance();
 
     EditText signEmail, signNum, signUpPw, signUpPwC;
     Button signSendB, signNumCheckB, signUpCB;
@@ -67,7 +68,6 @@ public class SignUpActivity extends AppCompatActivity {
             Toast.makeText(getApplicationContext(), "이메일 형식이 올바르지 않습니다.",
                     Toast.LENGTH_SHORT).show();
         }
-
         if(signUpPw.getText().toString() == signUpPwC.getText().toString()) {
             // 비밀번호가 둘이 같다면 '확인'버튼 누를 시, '내 정보' 화면으로 넘어가게 함
             signUpCB.setOnClickListener(new View.OnClickListener() {
