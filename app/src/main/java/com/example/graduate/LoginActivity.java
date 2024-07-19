@@ -14,7 +14,7 @@ public class LoginActivity extends AppCompatActivity {
     Button loginB, fpwB, signUpB;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
@@ -35,7 +35,7 @@ public class LoginActivity extends AppCompatActivity {
         fpwB.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), PWActivity.class);
+                Intent intent = new Intent(getApplicationContext(), ChangePwActivity.class);
 
                 startActivity(intent);
             }

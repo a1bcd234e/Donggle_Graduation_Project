@@ -1,37 +1,33 @@
 package com.example.graduate;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.PersistableBundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
-
-import com.google.firebase.auth.FirebaseAuth;
-
 public class SignUpActivity extends AppCompatActivity {
     FirebaseAuth auth = FirebaseAuth.getInstance();
 
-    EditText edtEmail, edtNum, signUpPw, signUpPwC;
-    Button sendB, numCheckB, signUpCB;
+    EditText signEmail, signNum, signUpPw, signUpPwC;
+    Button signSendB, signNumCheckB, signUpCB;
 
     int checkNum = (int) (Math.random() * 10000);
     @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup);
 
-        edtEmail = (EditText) findViewById(R.id.edtEmail);
-        edtNum = (EditText) findViewById(R.id.edtNum);
+        signEmail = (EditText) findViewById(R.id.signEmail);
+        signNum = (EditText) findViewById(R.id.signNum);
         signUpPw = (EditText) findViewById(R.id.signUpPw);
         signUpPwC = (EditText) findViewById(R.id.signUpPwC);
 
-        sendB = (Button) findViewById(R.id.sendB);
-        numCheckB = (Button) findViewById(R.id.numCheckB);
+        signSendB = (Button) findViewById(R.id.signSendB);
+        signNumCheckB = (Button) findViewById(R.id.signNumCheckB);
         signUpCB = (Button) findViewById(R.id.signUpCB);
 
         // 인증번호가 확인되기 전까지는 해당 editText에 입력하지 못하도록 함
@@ -40,7 +36,7 @@ public class SignUpActivity extends AppCompatActivity {
         signUpPwC.setFocusableInTouchMode(false);
         signUpPwC.setFocusable(false);
 
-        sendB.setOnClickListener(new View.OnClickListener() {
+        signSendB.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 // edtEmail을 getText로 가져와서 이메일 보내기
@@ -48,15 +44,28 @@ public class SignUpActivity extends AppCompatActivity {
             }
         });
 
-        // edtNum을 int형으로 변환 후 userNum에 저장함
-        int userNum = Integer.parseInt(edtNum.getText().toString());
+        int userNum;
 
-        if(userNum == checkNum) {
-            signUpPw.setFocusableInTouchMode(true);
-            signUpPw.setFocusable(true);
-        }
-        else {
-            Toast.makeText(getApplicationContext(), "인증번호가 올바르지 않습니다.",
+        // edtNum을 int형으로 변환 후 userNum에 저장함
+        if (signNum.getText().toString() != "") {
+            try {
+                userNum = Integer.parseInt(signNum.getText().toString());
+
+                if(userNum == checkNum) {
+                    signUpPw.setFocusableInTouchMode(true);
+                    signUpPw.setFocusable(true);
+                }
+                else {
+                    Toast.makeText(getApplicationContext(), "인증번호가 올바르지 않습니다.",
+                            Toast.LENGTH_SHORT).show();
+                }
+            } catch (NumberFormatException e) {
+                // 변환 실패 처리
+                e.printStackTrace();
+            }
+        } else {
+            // stringValue가 비어있는 경우 기본값 설정 등의 처리
+            Toast.makeText(getApplicationContext(), "이메일 형식이 올바르지 않습니다.",
                     Toast.LENGTH_SHORT).show();
         }
         if(signUpPw.getText().toString() == signUpPwC.getText().toString()) {

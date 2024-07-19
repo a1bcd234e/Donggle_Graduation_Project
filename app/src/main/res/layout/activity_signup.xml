@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    tools:context=".SignUpActivity">
 
     <TextView
         android:layout_width="match_parent"
@@ -10,7 +13,7 @@
         android:layout_margin="30dp"
         android:padding="50dp"
         android:textSize="30dp"
-        android:text="Food Table"/>
+        android:text="회원 가입"/>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -23,14 +26,14 @@
             android:layout_weight="3"
             android:layout_margin="20dp"
             android:hint="이메일 입력"
-            android:id="@+id/edtEmail" />
+            android:id="@+id/signEmail" />
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:layout_margin="20dp"
             android:text="인증번호 전송"
-            android:id="@+id/sendB" />
+            android:id="@+id/signSendB" />
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
@@ -43,14 +46,14 @@
             android:layout_weight="3"
             android:layout_margin="20dp"
             android:hint="인증번호 입력"
-            android:id="@+id/edtNum" />
+            android:id="@+id/signNum" />
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="3"
             android:layout_margin="20dp"
             android:text="확인"
-            android:id="@+id/numCheckB" />
+            android:id="@+id/signNumCheckB" />
     </LinearLayout>
     <EditText
         android:layout_width="match_parent"
@@ -70,4 +73,5 @@
         android:layout_margin="20dp"
         android:text="확인"
         android:id="@+id/signUpCB" />
+
 </LinearLayout>
