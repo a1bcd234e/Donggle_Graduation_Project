@@ -9,8 +9,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
+
 public class SignUpActivity extends AppCompatActivity {
-    FirebaseAuth auth = FirebaseAuth.getInstance();
 
     EditText signEmail, signNum, signUpPw, signUpPwC;
     Button signSendB, signNumCheckB, signUpCB;
