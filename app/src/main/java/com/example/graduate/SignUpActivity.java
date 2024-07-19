@@ -40,6 +40,17 @@ public class SignUpActivity extends AppCompatActivity {
             public void onClick(View view) {
                 // edtEmail을 getText로 가져와서 이메일 보내기
                 // checkNum 숫자를 보낼거임.
+                Intent emailSend = new Intent(Intent.ACTION_SEND);
+                emailSend.setType("plain/text");
+
+                String emailAdd = signEmail.getText().toString();
+                String sendText = String.format("Donggle 동글 이메일 인증번호 : %d", checkNum);
+
+                emailSend.putExtra(Intent.EXTRA_EMAIL, emailAdd);
+                emailSend.putExtra(Intent.EXTRA_SUBJECT, "Donggle 동글 이메일 인증번호");
+                emailSend.putExtra(Intent.EXTRA_TEXT, sendText);
+
+                startActivity(emailSend);
             }
         });
 
