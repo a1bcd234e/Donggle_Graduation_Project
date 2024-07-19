@@ -11,8 +11,8 @@ import android.widget.Toast;
 
 public class SignUpActivity extends AppCompatActivity {
 
-    EditText edtEmail, edtNum, signUpPw, signUpPwC;
-    Button sendB, numCheckB, signUpCB;
+    EditText signEmail, signNum, signUpPw, signUpPwC;
+    Button signSendB, signNumCheckB, signUpCB;
 
     int checkNum = (int) (Math.random() * 10000);
     @Override
@@ -20,13 +20,13 @@ public class SignUpActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup);
 
-        edtEmail = (EditText) findViewById(R.id.edtEmail);
-        edtNum = (EditText) findViewById(R.id.edtNum);
+        signEmail = (EditText) findViewById(R.id.signEmail);
+        signNum = (EditText) findViewById(R.id.signNum);
         signUpPw = (EditText) findViewById(R.id.signUpPw);
         signUpPwC = (EditText) findViewById(R.id.signUpPwC);
 
-        sendB = (Button) findViewById(R.id.sendB);
-        numCheckB = (Button) findViewById(R.id.numCheckB);
+        signSendB = (Button) findViewById(R.id.signSendB);
+        signNumCheckB = (Button) findViewById(R.id.signNumCheckB);
         signUpCB = (Button) findViewById(R.id.signUpCB);
 
         // 인증번호가 확인되기 전까지는 해당 editText에 입력하지 못하도록 함
@@ -35,7 +35,7 @@ public class SignUpActivity extends AppCompatActivity {
         signUpPwC.setFocusableInTouchMode(false);
         signUpPwC.setFocusable(false);
 
-        sendB.setOnClickListener(new View.OnClickListener() {
+        signSendB.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 // edtEmail을 getText로 가져와서 이메일 보내기
@@ -46,9 +46,9 @@ public class SignUpActivity extends AppCompatActivity {
         int userNum;
 
         // edtNum을 int형으로 변환 후 userNum에 저장함
-        if (edtNum.getText().toString() != "") {
+        if (signNum.getText().toString() != "") {
             try {
-                userNum = Integer.parseInt(edtNum.getText().toString());
+                userNum = Integer.parseInt(signNum.getText().toString());
 
                 if(userNum == checkNum) {
                     signUpPw.setFocusableInTouchMode(true);
