@@ -9,6 +9,11 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.google.firebase.Firebase;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 public class FindPwActivity extends AppCompatActivity {
 
     int randomNum = (int) (Math.random() * 10000);
@@ -18,6 +23,7 @@ public class FindPwActivity extends AppCompatActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_fpw);
+
 
         fpwEmail = (EditText) findViewById(R.id.fpwEmail);
         fpwNum = (EditText) findViewById(R.id.fpwNum);
@@ -29,18 +35,7 @@ public class FindPwActivity extends AppCompatActivity {
         fpwSendB.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent emailSend = new Intent(Intent.ACTION_SEND);
-                emailSend.setType("plain/text");
 
-                String emailAdd = fpwEmail.getText().toString();
-                String sendText = String.format("Donggle 동글 이메일 인증번호 : %d", randomNum);
-
-                emailSend.putExtra(Intent.EXTRA_EMAIL, emailAdd);
-                emailSend.putExtra(Intent.EXTRA_SUBJECT, "Donggle 동글 이메일 인증번호");
-                emailSend.putExtra(Intent.EXTRA_TEXT, sendText);
-                emailSend.setPackage("com.google.android.gm");
-
-                startActivity(emailSend);
             }
         });
 

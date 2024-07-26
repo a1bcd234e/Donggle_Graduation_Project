@@ -1,5 +1,6 @@
 package com.example.graduate;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -9,9 +10,20 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.Firebase;
+import com.google.firebase.auth.ActionCodeSettings;
+import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class SignUpActivity extends AppCompatActivity {
+
+    private FirebaseAuth mAuth;
+    private DatabaseReference mDBRef;
 
     EditText signEmail, signNum, signUpPw, signUpPwC;
     Button signSendB, signNumCheckB, signUpCB;
@@ -21,6 +33,9 @@ public class SignUpActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup);
+
+        mAuth = FirebaseAuth.getInstance();
+        mDBRef = FirebaseDatabase.getInstance().getReference("Donggle");
 
         signEmail = (EditText) findViewById(R.id.signEmail);
         signNum = (EditText) findViewById(R.id.signNum);
@@ -40,56 +55,28 @@ public class SignUpActivity extends AppCompatActivity {
         signSendB.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // edtEmail을 getText로 가져와서 이메일 보내기
-                // checkNum 숫자를 보낼거임.
-                Intent emailSend = new Intent(Intent.ACTION_SEND);
-                emailSend.setType("plain/text");
-
-                String emailAdd = signEmail.getText().toString();
-                String sendText = String.format("Donggle 동글 이메일 인증번호 : %d", checkNum);
-
-                emailSend.putExtra(Intent.EXTRA_EMAIL, emailAdd);
-                emailSend.putExtra(Intent.EXTRA_SUBJECT, "Donggle 동글 이메일 인증번호");
-                emailSend.putExtra(Intent.EXTRA_TEXT, sendText);
-
-                startActivity(emailSend);
+                String strEmail = signEmail.getText().toString();
+                String strpwd = signUpPw.getText().toString();
+                String strpwdc = signUpPwC.getText().toString();
+                boolean check = strpwd.equals(strpwdc);
+                if (check){
+                    //이메일 인증번호 받기
+                    ActionCodeSettings actionCodeSettings =
+                            ActionCodeSettings.newBuilder()
+                                    // URL you want to redirect back to. The domain (www.example.com) for this
+                                    // URL must be whitelisted in the Firebase Console.
+                                    .setUrl("https://www.example.com/finishSignUp?cartId=1234")
+                                    // This must be true
+                                    .setHandleCodeInApp(true)
+                                    .setIOSBundleId("com.example.ios")
+                                    .setAndroidPackageName(
+                                            "com.example.android",
+                                            true, /* installIfNotAvailable */
+                                            "12"    /* minimumVersion */)
+                                    .build();
+                }
             }
         });
 
-        int userNum;
-
-        // edtNum을 int형으로 변환 후 userNum에 저장함
-        if (signNum.getText().toString() != "") {
-            try {
-                userNum = Integer.parseInt(signNum.getText().toString());
-
-                if(userNum == checkNum) {
-                    signUpPw.setFocusableInTouchMode(true);
-                    signUpPw.setFocusable(true);
-                }
-                else {
-                    Toast.makeText(getApplicationContext(), "인증번호가 올바르지 않습니다.",
-                            Toast.LENGTH_SHORT).show();
-                }
-            } catch (NumberFormatException e) {
-                // 변환 실패 처리
-                e.printStackTrace();
-            }
-        } else {
-            // stringValue가 비어있는 경우 기본값 설정 등의 처리
-            Toast.makeText(getApplicationContext(), "이메일 형식이 올바르지 않습니다.",
-                    Toast.LENGTH_SHORT).show();
-        }
-        if(signUpPw.getText().toString() == signUpPwC.getText().toString()) {
-            // 비밀번호가 둘이 같다면 '확인'버튼 누를 시, '내 정보' 화면으로 넘어가게 함
-            signUpCB.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-
-                    Intent intent = new Intent(getApplicationContext(), UserInfoActivity.class);
-                    startActivity(intent);
-                }
-            });
-        }
     }
 }
